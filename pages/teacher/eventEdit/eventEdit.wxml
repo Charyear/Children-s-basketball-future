@@ -1,0 +1,80 @@
+<!--pages/teacher/eventEdit/eventEdit.wxml-->
+<view class="edit-container">
+  <!-- 图片上传区域 -->
+  <view class="image-upload-section">
+    <block wx:if="{{images.length > 0}}">
+      <swiper class="image-swiper" indicator-dots="{{images.length > 1}}" circular="true">
+        <swiper-item wx:for="{{images}}" wx:key="index">
+          <view class="image-item">
+            <image src="{{item}}" mode="aspectFill" class="uploaded-image"></image>
+            <view class="delete-btn" catchtap="onDeleteImage" data-index="{{index}}">✕</view>
+          </view>
+        </swiper-item>
+      </swiper>
+      <view class="add-image-btn" bindtap="onAddImage">+</view>
+    </block>
+    <block wx:else>
+      <view class="empty-upload" bindtap="onAddImage">
+        <view class="upload-placeholder">
+          <text class="upload-icon">+</text>
+          <text class="upload-text">点击上传赛事图片</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 表单区域 -->
+  <view class="form-section">
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>赛事名称</text>
+      <input class="form-input" placeholder="请输入赛事名称" value="{{formData.title}}" bindinput="onInputChange" data-field="title" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>举办地点</text>
+      <input class="form-input" placeholder="请输入举办地点" value="{{formData.location}}" bindinput="onInputChange" data-field="location" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>举办时间</text>
+      <picker mode="date" value="{{formData.date}}" bindchange="onDateChange">
+        <view class="picker-input">
+          <text class="{{formData.date ? '' : 'picker-placeholder'}}">{{formData.date || '请选择日期'}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+      <picker mode="time" value="{{formData.time}}" bindchange="onTimeChange" style="margin-top: 20rpx;">
+        <view class="picker-input">
+          <text class="{{formData.time ? '' : 'picker-placeholder'}}">{{formData.time || '请选择时间'}}</text>
+          <text class="picker-arrow">▼</text>
+        </view>
+      </picker>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>赛事简介</text>
+      <textarea class="form-textarea" placeholder="请输入赛事简介" value="{{formData.description}}" bindinput="onInputChange" data-field="description" maxlength="500" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>参赛人数上限</text>
+      <input class="form-input" type="number" placeholder="请输入参赛人数上限" value="{{formData.maxParticipants}}" bindinput="onInputChange" data-field="maxParticipants" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>总负责人</text>
+      <input class="form-input" placeholder="请输入总负责人姓名" value="{{formData.manager}}" bindinput="onInputChange" data-field="manager" />
+    </view>
+
+    <view class="form-group">
+      <text class="form-label"><text class="required">*</text>负责人联系方式</text>
+      <input class="form-input" type="number" placeholder="请输入联系电话" value="{{formData.managerPhone}}" bindinput="onInputChange" data-field="managerPhone" maxlength="11" />
+    </view>
+  </view>
+
+  <!-- 操作按钮 -->
+  <view class="action-section">
+    <button class="action-btn cancel-btn" bindtap="onCancel">取消</button>
+    <button class="action-btn save-btn" bindtap="onSave">保存</button>
+  </view>
+</view>
