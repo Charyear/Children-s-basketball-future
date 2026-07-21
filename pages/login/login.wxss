@@ -1,0 +1,351 @@
+/* pages/login/login.wxss */
+.login-container {
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #EFF6FF 0%, #FFF7ED 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* 顶部品牌区域 */
+.brand-section {
+  padding: 160rpx 80rpx 96rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 48rpx;
+}
+
+.brand-logo {
+  width: 224rpx;
+  height: 224rpx;
+  border-radius: 50%;
+  background-color: #FF7A2F;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 30rpx rgba(255, 122, 47, 0.2);
+  overflow: hidden;
+}
+
+.brand-logo image {
+  width: 140rpx;
+  height: 140rpx;
+}
+
+.brand-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.brand-name {
+  font-size: 64rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.brand-desc {
+  font-size: 32rpx;
+  color: #999999;
+}
+
+/* 登录表单区域 */
+.form-section {
+  padding: 64rpx 64rpx 0;
+  display: flex;
+  flex-direction: column;
+  gap: 64rpx;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 40rpx;
+}
+
+.input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 32rpx;
+  font-size: 32rpx;
+  color: #CCCCCC;
+  z-index: 1;
+}
+
+.form-input {
+  width: 100%;
+  height: 112rpx;
+  padding: 0 32rpx 0 96rpx;
+  background-color: #F9FAFB;
+  border-radius: 32rpx;
+  font-size: 30rpx;
+  color: #333333;
+  border: 2rpx solid transparent;
+  transition: all 0.3s;
+}
+
+.form-input:focus {
+  border-color: #FF7A2F;
+  background-color: #FFFFFF;
+}
+
+.input-placeholder {
+  color: #CCCCCC;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 32rpx;
+  font-size: 32rpx;
+  color: #CCCCCC;
+  padding: 10rpx;
+  z-index: 1;
+}
+
+/* 登录按钮 */
+.login-btn {
+  width: 100%;
+  height: 112rpx;
+  background-color: #FF7A2F;
+  color: #FFFFFF;
+  border-radius: 32rpx;
+  font-size: 36rpx;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: 0 8rpx 30rpx rgba(255, 122, 47, 0.3);
+}
+
+.login-btn::after {
+  border: none;
+}
+
+.login-btn:active {
+  opacity: 0.9;
+}
+
+/* 提示区域 */
+.tips-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24rpx;
+  padding-top: 32rpx;
+}
+
+.agreement-section {
+  display: flex;
+  justify-content: center;
+}
+
+.checkbox-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.checkbox {
+  width: 32rpx;
+  height: 32rpx;
+  border: 2rpx solid #CCCCCC;
+  border-radius: 6rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.checkbox.checked {
+  background-color: #FF7A2F;
+  border-color: #FF7A2F;
+}
+
+.checkbox .icon-check {
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.agreement-text {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.tips-links {
+  display: flex;
+  gap: 32rpx;
+}
+
+.tips-link {
+  font-size: 28rpx;
+  color: #3B82F6;
+}
+
+.tips-link.primary {
+  color: #FF7A2F;
+  font-weight: 500;
+}
+
+/* 底部装饰区域 */
+.bottom-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  padding-bottom: 96rpx;
+}
+
+.dots {
+  display: flex;
+  gap: 16rpx;
+}
+
+.dot {
+  width: 16rpx;
+  height: 16rpx;
+  border-radius: 50%;
+  background-color: #FF7A2F;
+}
+
+.dot:nth-child(1) { opacity: 0.3; }
+.dot:nth-child(2) { opacity: 0.5; }
+.dot:nth-child(3) { opacity: 0.7; }
+.dot:nth-child(4) { opacity: 1; }
+
+/* 弹窗遮罩 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask.hidden {
+  display: none;
+}
+
+/* 加载弹窗 */
+.loading-modal {
+  width: 480rpx;
+  padding: 64rpx;
+  background-color: #FFFFFF;
+  border-radius: 40rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 32rpx;
+}
+
+.spinner {
+  width: 80rpx;
+  height: 80rpx;
+  border: 8rpx solid #FFF7ED;
+  border-top-color: #FF7A2F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  font-size: 30rpx;
+  color: #333333;
+}
+
+/* 角色选择弹窗 */
+.role-select-modal {
+  width: 640rpx;
+  background-color: #FFFFFF;
+  border-radius: 32rpx;
+  padding: 48rpx 40rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 48rpx;
+  box-shadow: 0 8rpx 30rpx rgba(0, 0, 0, 0.1);
+}
+
+.role-select-title {
+  text-align: center;
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.role-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.role-item {
+  width: 100%;
+  height: 112rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16rpx;
+}
+
+.role-item text {
+  font-size: 30rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.role-item .iconfont {
+  font-size: 36rpx;
+}
+
+.role-parent {
+  background-color: #FFF7ED;
+}
+
+.role-parent .iconfont {
+  color: #FF7A2F;
+}
+
+.role-teacher {
+  background-color: #EFF6FF;
+}
+
+.role-teacher .iconfont {
+  color: #3B82F6;
+}
+
+.role-admin {
+  background-color: #F3F4F6;
+}
+
+.role-admin .iconfont {
+  color: #6B7280;
+}
+
+.role-cancel {
+  width: 100%;
+  height: 96rpx;
+  background-color: #F9FAFB;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #6B7280;
+}

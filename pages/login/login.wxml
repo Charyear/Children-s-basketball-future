@@ -1,0 +1,105 @@
+<!--pages/login/login.wxml-->
+<view class="login-container">
+  <!-- 顶部品牌区域 -->
+  <view class="brand-section">
+    <view class="brand-logo">
+      <image src="/static/login.png" mode="aspectFit"></image>
+    </view>
+    <view class="brand-info">
+      <text class="brand-name">童篮未来</text>
+      <text class="brand-desc">幼儿篮球赛事服务平台</text>
+    </view>
+  </view>
+
+  <!-- 登录表单区域 -->
+  <view class="form-section">
+    <view class="form-group">
+      <!-- 账号输入框 -->
+      <view class="input-wrapper">
+        <text class="input-icon iconfont icon-user"></text>
+        <input
+          class="form-input"
+          placeholder="请输入账号"
+          placeholder-class="input-placeholder"
+          value="{{username}}"
+          bindinput="onUsernameInput"
+          confirm-type="next"
+        />
+      </view>
+      <!-- 密码输入框 -->
+      <view class="input-wrapper">
+        <text class="input-icon iconfont icon-lock"></text>
+        <input
+          class="form-input"
+          placeholder="请输入密码"
+          placeholder-class="input-placeholder"
+          value="{{password}}"
+          password="{{!showPassword}}"
+          bindinput="onPasswordInput"
+          confirm-type="done"
+          bindconfirm="doLogin"
+        />
+        <text
+          class="password-toggle iconfont {{showPassword ? 'icon-eye-off' : 'icon-eye'}}"
+          bindtap="togglePassword"
+        ></text>
+      </view>
+    </view>
+
+    <!-- 登录按钮 -->
+    <button class="login-btn" bindtap="doLogin">立即登录</button>
+
+    <!-- 提示区域 -->
+    <view class="tips-section">
+      <view class="agreement-section">
+        <view class="checkbox-wrapper" bindtap="toggleAgree">
+          <view class="checkbox {{agreeTerms ? 'checked' : ''}}">
+            <text class="iconfont icon-check" wx:if="{{agreeTerms}}"></text>
+          </view>
+          <text class="agreement-text">登录即代表您同意《用户协议》和《隐私政策》</text>
+        </view>
+      </view>
+      <view class="tips-links">
+        <text class="tips-link" bindtap="forgetPassword">忘记密码?</text>
+        <text class="tips-link" bindtap="contactAdmin">联系管理员</text>
+        <text class="tips-link primary" bindtap="goRegister">立即注册</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 底部装饰区域 -->
+  <view class="bottom-section">
+    <view class="dots">
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+      <view class="dot"></view>
+    </view>
+  </view>
+</view>
+
+<!-- 加载弹窗 -->
+<view class="modal-mask {{loading ? '' : 'hidden'}}" catchtouchmove="preventTouchMove">
+  <view class="loading-modal">
+    <view class="spinner"></view>
+    <text class="loading-text">正在验证权限...</text>
+  </view>
+</view>
+
+<!-- 角色选择弹窗 -->
+<view class="modal-mask {{showRoleSelect ? '' : 'hidden'}}" catchtouchmove="preventTouchMove">
+  <view class="role-select-modal">
+    <view class="role-select-title">选择登录身份</view>
+    <view class="role-list">
+      <view class="role-item role-parent" bindtap="selectRole" data-role="parent">
+        <text class="iconfont icon-home"></text>
+        <text>家长端入口</text>
+      </view>
+      <view class="role-item role-teacher" bindtap="selectRole" data-role="teacher">
+        <text class="iconfont icon-teacher"></text>
+        <text>教师端入口</text>
+      </view>
+    </view>
+    <view class="role-cancel" bindtap="closeRoleSelect">取消</view>
+  </view>
+</view>
