@@ -1,0 +1,121 @@
+<!--pages/parent/enroll/enroll.wxml-->
+<view class="enroll-container">
+  <!-- 主内容区域 -->
+  <view class="main-content">
+    <!-- 状态筛选标签 -->
+    <scroll-view class="tab-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+      <view
+        class="tab-item {{activeTab === index ? 'active' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="index"
+        bindtap="onTabChange"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+
+    <!-- 报名列表 -->
+    <view class="enroll-list" wx:if="{{filteredList.length > 0}}">
+      <view class="enroll-card" wx:for="{{filteredList}}" wx:key="id" bindtap="onShowEnrollDetail" data-item="{{item}}">
+        <image class="enroll-card-image" src="{{item.image}}" mode="aspectFill"></image>
+        <view class="enroll-card-content">
+          <view class="enroll-card-header">
+            <text class="enroll-card-title">{{item.title}}</text>
+            <text class="enroll-card-status" style="background-color: {{item.statusColor}}15; color: {{item.statusColor}};">{{item.statusText}}</text>
+          </view>
+          <view class="enroll-card-meta">
+            <view class="enroll-card-meta-item">
+              <text class="iconfont icon-calendar"></text>
+              <text>{{item.date}}</text>
+            </view>
+            <view class="enroll-card-meta-item">
+              <text class="iconfont icon-location"></text>
+              <text>{{item.location}}</text>
+            </view>
+            <view class="enroll-card-meta-item">
+              <text class="iconfont icon-child"></text>
+              <text>参赛幼儿：{{item.child}}</text>
+            </view>
+          </view>
+          <view class="enroll-card-footer">
+            <view class="enroll-card-btn secondary" catchtap="onCancelEnroll" data-id="{{item.id}}">取消报名</view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <text class="empty-icon iconfont icon-empty"></text>
+      <text class="empty-text">暂无报名记录</text>
+    </view>
+  </view>
+</view>
+
+<!-- 报名详情弹窗 -->
+<view class="detail-modal-mask {{showEnrollDetail ? 'show' : ''}}" bindtap="onCloseEnrollDetail" catchtouchmove="preventTouchMove">
+  <view class="detail-modal {{showEnrollDetail ? 'show' : ''}}" catchtap>
+    <scroll-view class="detail-modal-content" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+      <image class="detail-event-image" src="{{selectedItem.image}}" mode="aspectFill"></image>
+      <view class="detail-status-banner" style="background-color: {{selectedItem.statusColor}}15;">
+        <text style="color: {{selectedItem.statusColor}};">{{selectedItem.statusText}}</text>
+      </view>
+      <view class="detail-event-info">
+        <text class="detail-event-title">{{selectedItem.title}}</text>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon iconfont icon-location"></text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">赛事地点</text>
+            <text class="detail-meta-value">{{selectedItem.location}}</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon iconfont icon-calendar"></text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">赛事时间</text>
+            <text class="detail-meta-value">{{selectedItem.date}}</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon iconfont icon-child"></text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">参赛幼儿</text>
+            <text class="detail-meta-value">{{selectedItem.child}}</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon iconfont icon-user"></text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">联系家长</text>
+            <text class="detail-meta-value">{{selectedItem.contact || '张先生（联系电话：138****8888）'}}</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon iconfont icon-info"></text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">赛事介绍</text>
+            <text class="detail-meta-value">{{selectedItem.description || '2024春季幼儿篮球赛专为3-6岁幼儿设计，包含趣味运球、投篮挑战、团队协作等多个适合幼儿的篮球游戏项目。让孩子们在快乐中锻炼身体，培养团队合作精神。'}}</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon">👥</text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">参赛人数</text>
+            <text class="detail-meta-value">{{selectedItem.enrolled || 0}} / {{selectedItem.maxParticipants || 0}} 人</text>
+          </view>
+        </view>
+        <view class="detail-meta-item">
+          <text class="detail-meta-icon">👤</text>
+          <view class="detail-meta-content">
+            <text class="detail-meta-label">总负责人</text>
+            <text class="detail-meta-value">{{selectedItem.manager || '李老师'}} · {{selectedItem.managerPhone || '13812345678'}}</text>
+          </view>
+        </view>
+      </view>
+    </scroll-view>
+    <view class="detail-footer">
+      <view class="detail-enroll-btn detail-close-btn" bindtap="onCloseEnrollDetail">关闭详情</view>
+    </view>
+  </view>
+</view>
