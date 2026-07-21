@@ -1,0 +1,67 @@
+<!--pages/teacher/home/home.wxml-->
+<view class="home-container">
+  <!-- 背景 -->
+  <view class="background"></view>
+
+  <!-- 标题 -->
+  <view class="title-section">
+    <text class="main-title">教师管理中心</text>
+    <text class="sub-title">欢迎回来</text>
+  </view>
+
+  <!-- 四个导航卡片 -->
+  <view class="cards-container">
+    <!-- 左上卡片 - 赛事管理 -->
+    <view
+      class="nav-card card-top-left {{showCards ? 'show' : ''}}"
+      bindtap="navigateToPage"
+      data-page="event"
+      data-position="top-left"
+    >
+      <view class="card-icon">🏆</view>
+      <view class="card-title">赛事管理</view>
+      <view class="card-desc">管理和发布赛事</view>
+    </view>
+
+    <!-- 右上卡片 - 报名审核 -->
+    <view
+      class="nav-card card-top-right {{showCards ? 'show' : ''}}"
+      bindtap="navigateToPage"
+      data-page="audit"
+      data-position="top-right"
+    >
+      <view class="card-icon">📋</view>
+      <view class="card-title">报名审核</view>
+      <view class="card-desc">审核学员报名</view>
+    </view>
+
+    <!-- 左下卡片 - 学员管理 -->
+    <view
+      class="nav-card card-bottom-left {{showCards ? 'show' : ''}}"
+      bindtap="navigateToPage"
+      data-page="student"
+      data-position="bottom-left"
+    >
+      <view class="card-icon">👥</view>
+      <view class="card-title">学员管理</view>
+      <view class="card-desc">查看学员信息</view>
+    </view>
+
+    <!-- 右下卡片 - 个人中心 -->
+    <view
+      class="nav-card card-bottom-right {{showCards ? 'show' : ''}}"
+      bindtap="navigateToPage"
+      data-page="profile"
+      data-position="bottom-right"
+    >
+      <view class="card-icon">👤</view>
+      <view class="card-title">个人中心</view>
+      <view class="card-desc">个人信息设置</view>
+    </view>
+  </view>
+
+  <!-- 退出登录按钮 -->
+  <view class="logout-section {{showCards ? 'show' : ''}}">
+    <button class="logout-btn" bindtap="onLogout">退出登录</button>
+  </view>
+</view>
