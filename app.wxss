@@ -1,0 +1,206 @@
+/* app.wxss - 全局样式 */
+/* 主色调定义：橙色 #FF7A2F，蓝色 #3B82F6 */
+page {
+  background-color: #F5F7FA;
+  font-family: 'PingFang SC', 'Microsoft YaHei', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.5;
+}
+
+view, text, button, input, textarea {
+  box-sizing: border-box;
+}
+
+/* 隐藏滚动条 */
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}
+
+/* 通用容器 */
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #FFFFFF;
+}
+
+/* 通用按钮样式 */
+.btn-primary {
+  background-color: #FF7A2F;
+  color: #FFFFFF;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-primary::after {
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #3B82F6;
+  color: #FFFFFF;
+  border-radius: 48rpx;
+  font-size: 32rpx;
+  font-weight: 600;
+  border: none;
+}
+
+.btn-secondary::after {
+  border: none;
+}
+
+/* 通用卡片样式 */
+.card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+/* 通用标签样式 */
+.tag {
+  display: inline-block;
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.tag-primary {
+  background-color: #FFF7ED;
+  color: #FF7A2F;
+}
+
+.tag-success {
+  background-color: #ECFDF5;
+  color: #10B981;
+}
+
+.tag-warning {
+  background-color: #FFFBEB;
+  color: #F59E0B;
+}
+
+.tag-danger {
+  background-color: #FEF2F2;
+  color: #EF4444;
+}
+
+.tag-info {
+  background-color: #EFF6FF;
+  color: #3B82F6;
+}
+
+/* 文本样式 */
+.text-primary {
+  color: #FF7A2F;
+}
+
+.text-secondary {
+  color: #3B82F6;
+}
+
+.text-gray {
+  color: #999999;
+}
+
+.text-bold {
+  font-weight: bold;
+}
+
+/* 弹性布局 */
+.flex {
+  display: flex;
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 间距 */
+.mt-10 { margin-top: 10rpx; }
+.mt-20 { margin-top: 20rpx; }
+.mt-30 { margin-top: 30rpx; }
+.mt-40 { margin-top: 40rpx; }
+.mb-10 { margin-bottom: 10rpx; }
+.mb-20 { margin-bottom: 20rpx; }
+.mb-30 { margin-bottom: 30rpx; }
+.mb-40 { margin-bottom: 40rpx; }
+.p-20 { padding: 20rpx; }
+.p-30 { padding: 30rpx; }
+.p-40 { padding: 40rpx; }
+
+/* 分割线 */
+.divider {
+  height: 1rpx;
+  background-color: #F0F0F0;
+  margin: 20rpx 0;
+}
+
+/* 遮罩层 */
+.modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10002;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-mask.hidden {
+  display: none;
+}
+
+/* 加载动画 */
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.spinner {
+  width: 48rpx;
+  height: 48rpx;
+  border: 4rpx solid #FFF7ED;
+  border-top-color: #FF7A2F;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+/* 淡入动画 */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+.fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.fade-out {
+  animation: fadeOut 0.3s ease-out;
+}

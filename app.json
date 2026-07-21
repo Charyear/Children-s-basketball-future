@@ -1,0 +1,59 @@
+{
+  "pages": [
+    "pages/login/login",
+    "pages/parent/home/home",
+    "pages/parent/enroll/enroll",
+    "pages/parent/enrollForm/enrollForm",
+    "pages/parent/history/history",
+    "pages/parent/profile/profile",
+    "pages/teacher/home/home",
+    "pages/teacher/event/event",
+    "pages/teacher/audit/audit",
+    "pages/teacher/student/student",
+    "pages/teacher/profile/profile",
+    "pages/teacher/eventDetail/eventDetail",
+    "pages/teacher/eventEdit/eventEdit"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#FFFFFF",
+    "navigationBarTitleText": "童篮未来",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F5F5F5"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#999999",
+    "selectedColor": "#FF7A2F",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/parent/home/home",
+        "text": "首页赛事",
+        "iconPath": "static/home.png",
+        "selectedIconPath": "static/home_active.png"
+      },
+      {
+        "pagePath": "pages/parent/enroll/enroll",
+        "text": "我的报名",
+        "iconPath": "static/list.png",
+        "selectedIconPath": "static/list_active.png"
+      },
+      {
+        "pagePath": "pages/parent/history/history",
+        "text": "赛事回顾",
+        "iconPath": "static/history.png",
+        "selectedIconPath": "static/history_active.png"
+      },
+      {
+        "pagePath": "pages/parent/profile/profile",
+        "text": "个人中心",
+        "iconPath": "static/user.png",
+        "selectedIconPath": "static/user_active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}
