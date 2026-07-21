@@ -1,0 +1,387 @@
+/* pages/parent/profile/profile.wxss */
+page {
+  background: linear-gradient(to bottom, #EFF6FF 0%, #FFF7ED 100%);
+}
+
+.profile-container {
+  width: 100%;
+  min-height: 100vh;
+}
+
+
+
+/* 用户信息区域 */
+.user-section {
+  background: linear-gradient(to right, #FF7A2F, rgba(255, 122, 47, 0.8));
+  padding: 40rpx 30rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 30rpx;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.user-avatar {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 50%;
+  border: 4rpx solid #FFFFFF;
+  overflow: hidden;
+}
+
+.user-avatar image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.user-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.user-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+}
+
+.user-id {
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* 主内容区域 */
+.main-content {
+  padding: 0 30rpx;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+/* 我的孩子模块 */
+.children-section {
+  margin-top: 30rpx;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24rpx;
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.add-child-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8rpx;
+  padding: 12rpx 24rpx;
+  background-color: #FFF3E8;
+  border-radius: 40rpx;
+  font-size: 24rpx;
+  color: #FF7A2F;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.child-item {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  background-color: #EFF6FF;
+  border-radius: 16rpx;
+}
+
+.child-avatar {
+  width: 80rpx;
+  height: 80rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3rpx solid #3B82F6;
+}
+
+.child-avatar image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.child-info {
+  margin-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 4rpx;
+}
+
+.child-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.child-meta {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+/* 功能菜单 */
+.menu-section {
+  margin-top: 30rpx;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+}
+
+.menu-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24rpx 0;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.menu-item:last-child {
+  border-bottom: none;
+}
+
+.menu-left {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+}
+
+.menu-icon {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.menu-icon text {
+  font-size: 28rpx;
+}
+
+.menu-name {
+  font-size: 28rpx;
+  font-weight: 500;
+  color: #333333;
+}
+
+.menu-right {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+}
+
+.menu-badge {
+  padding: 2rpx 12rpx;
+  background-color: #FF7A2F;
+  border-radius: 20rpx;
+  font-size: 20rpx;
+  color: #FFFFFF;
+}
+
+.menu-arrow {
+  font-size: 24rpx;
+  color: #CCCCCC;
+}
+
+/* 退出登录 */
+.logout-section {
+  margin-top: 30rpx;
+  padding: 0 30rpx;
+  padding-bottom: calc(120rpx + env(safe-area-inset-bottom));
+}
+
+.logout-btn {
+  width: 100%;
+  height: 88rpx;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 30rpx;
+  color: #EF4444;
+  font-weight: 500;
+}
+
+.logout-btn::after {
+  border: none;
+}
+
+/* 添加孩子模态框 */
+.modal-mask {
+  z-index: 10002 !important;
+}
+
+.add-child-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.add-child-modal-mask.show {
+  display: flex;
+}
+
+.add-child-modal-content {
+  width: 580rpx;
+  max-height: 80vh;
+  background-color: #FFFFFF;
+  border-radius: 16rpx;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.add-child-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 30rpx 30rpx 20rpx;
+  border-bottom: none;
+}
+
+.add-child-modal-title {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.add-child-close-btn {
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  color: #CCCCCC;
+  line-height: 1;
+}
+
+.add-child-form {
+  padding: 20rpx 30rpx 30rpx;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+
+.add-child-form-group {
+  margin-bottom: 30rpx;
+}
+
+.add-child-form-group:last-child {
+  margin-bottom: 0;
+}
+
+.add-child-label {
+  display: block;
+  font-size: 26rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  font-weight: 400;
+}
+
+.add-child-label .required {
+  color: #EF4444;
+  margin-right: 4rpx;
+}
+
+.add-child-input {
+  width: 100%;
+  height: 70rpx;
+  padding: 0 20rpx;
+  background-color: #FFFFFF;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #333333;
+  border: 1rpx solid #E5E7EB;
+  box-sizing: border-box;
+}
+
+.add-child-input:focus {
+  border-color: #FF7A2F;
+}
+
+.add-child-gender-group {
+  display: flex;
+  gap: 20rpx;
+}
+
+.add-child-gender-option {
+  flex: 1;
+  height: 70rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #FFFFFF;
+  border: 1rpx solid #E5E7EB;
+  border-radius: 8rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.add-child-gender-option.active {
+  background-color: #FFF3E8;
+  border-color: #FF7A2F;
+  color: #FF7A2F;
+}
+
+.add-child-modal-footer {
+  display: flex;
+  gap: 20rpx;
+  padding: 0 30rpx 30rpx;
+}
+
+.add-child-modal-btn {
+  flex: 1;
+  height: 76rpx;
+  border-radius: 8rpx;
+  font-size: 28rpx;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.add-child-modal-btn.cancel {
+  background-color: #FFFFFF;
+  color: #666666;
+  border: 1rpx solid #E5E7EB;
+}
+
+.add-child-modal-btn.confirm {
+  background-color: #FF7A2F;
+  color: #FFFFFF;
+  border: none;
+}
