@@ -1,0 +1,171 @@
+/* pages/parent/enrollForm/enrollForm.wxss */
+page {
+  background: linear-gradient(to bottom, #EFF6FF 0%, #FFF7ED 100%);
+}
+
+.enroll-form-container {
+  padding: 30rpx;
+  padding-bottom: 140rpx;
+}
+
+/* 赛事信息卡片 */
+.event-info-card {
+  background: linear-gradient(135deg, #FF7A2F, #FF9A5C);
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 8rpx 30rpx rgba(255, 122, 47, 0.2);
+}
+
+.event-info-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #FFFFFF;
+  display: block;
+  margin-bottom: 16rpx;
+}
+
+.event-info-meta {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  margin-top: 12rpx;
+  font-size: 26rpx;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 通用区块卡片 */
+.section-card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  margin-bottom: 30rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.section-title {
+  display: flex;
+  align-items: center;
+  gap: 12rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333333;
+  margin-bottom: 24rpx;
+}
+
+/* 孩子信息只读展示 */
+.child-info-readonly {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.child-info-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.child-info-avatar image {
+  width: 100%;
+  height: 100%;
+}
+
+.child-info-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.child-info-row {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+}
+
+.child-info-label {
+  font-size: 26rpx;
+  color: #999999;
+  width: 80rpx;
+}
+
+.child-info-value {
+  font-size: 28rpx;
+  color: #333333;
+  font-weight: 500;
+}
+
+/* 表单样式 */
+.form-group {
+  margin-bottom: 24rpx;
+}
+
+.form-group:last-child {
+  margin-bottom: 0;
+}
+
+.form-label {
+  font-size: 28rpx;
+  color: #333333;
+  margin-bottom: 12rpx;
+  display: flex;
+  align-items: center;
+}
+
+.required {
+  color: #EF4444;
+  margin-right: 4rpx;
+}
+
+.form-input {
+  width: 100%;
+  height: 80rpx;
+  background-color: #F9FAFB;
+  border-radius: 12rpx;
+  padding: 0 24rpx;
+  font-size: 28rpx;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+.form-textarea {
+  width: 100%;
+  height: 160rpx;
+  background-color: #F9FAFB;
+  border-radius: 12rpx;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: #333333;
+  box-sizing: border-box;
+}
+
+/* 提交按钮区域 */
+.submit-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24rpx 30rpx;
+  background-color: #FFFFFF;
+  box-shadow: 0 -4rpx 16rpx rgba(0, 0, 0, 0.04);
+}
+
+.submit-btn {
+  width: 100%;
+  height: 88rpx;
+  line-height: 88rpx;
+  text-align: center;
+  background: linear-gradient(135deg, #FF7A2F, #FF9A5C);
+  color: #FFFFFF;
+  font-size: 32rpx;
+  font-weight: bold;
+  border-radius: 44rpx;
+  border: none;
+}
+
+.submit-btn::after {
+  border: none;
+}

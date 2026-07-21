@@ -1,0 +1,84 @@
+<!--pages/parent/enrollForm/enrollForm.wxml-->
+<view class="enroll-form-container">
+  <!-- 赛事信息卡片 -->
+  <view class="event-info-card">
+    <view class="event-info-header">
+      <text class="event-info-title">{{eventTitle}}</text>
+    </view>
+    <view class="event-info-meta">
+      <text class="iconfont icon-calendar"></text>
+      <text>{{eventDate}}</text>
+    </view>
+    <view class="event-info-meta">
+      <text class="iconfont icon-location"></text>
+      <text>{{eventLocation}}</text>
+    </view>
+  </view>
+
+  <!-- 孩子信息（只读） -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="iconfont icon-child" style="color: #FF7A2F;"></text>
+      <text>参赛孩子信息</text>
+    </view>
+    <view class="child-info-readonly">
+      <view class="child-info-avatar">
+        <image src="{{childAvatar}}" mode="aspectFill"></image>
+      </view>
+      <view class="child-info-details">
+        <view class="child-info-row">
+          <text class="child-info-label">姓名</text>
+          <text class="child-info-value">{{childName}}</text>
+        </view>
+        <view class="child-info-row">
+          <text class="child-info-label">年龄</text>
+          <text class="child-info-value">{{childAge}}</text>
+        </view>
+        <view class="child-info-row">
+          <text class="child-info-label">班级</text>
+          <text class="child-info-value">{{childClass}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 报名信息填写 -->
+  <view class="section-card">
+    <view class="section-title">
+      <text class="iconfont icon-edit" style="color: #3B82F6;"></text>
+      <text>报名信息</text>
+    </view>
+    <view class="form-group">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>球衣号码</text>
+      </view>
+      <input class="form-input" placeholder="请输入球衣号码（1-99）" type="number" maxlength="2" value="{{jerseyNumber}}" bindinput="onJerseyNumberInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>到场陪护联系人</text>
+      </view>
+      <input class="form-input" placeholder="请输入联系人姓名" value="{{guardianName}}" bindinput="onGuardianNameInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">
+        <text class="required">*</text>
+        <text>联系电话</text>
+      </view>
+      <input class="form-input" placeholder="请输入联系电话" type="number" maxlength="11" value="{{guardianPhone}}" bindinput="onGuardianPhoneInput" />
+    </view>
+    <view class="form-group">
+      <view class="form-label">
+        <text>备注</text>
+      </view>
+      <textarea class="form-textarea" placeholder="请输入备注信息（选填）" maxlength="200" value="{{remark}}" bindinput="onRemarkInput"></textarea>
+    </view>
+  </view>
+
+  <!-- 提交按钮 -->
+  <view class="submit-section">
+    <button class="submit-btn" bindtap="onSubmit">提交报名</button>
+  </view>
+</view>
