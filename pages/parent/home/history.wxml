@@ -1,0 +1,55 @@
+<!--pages/parent/history/history.wxml-->
+<view class="history-container">
+  <!-- 主内容区域 -->
+  <view class="main-content">
+    <!-- 分类筛选标签 -->
+    <scroll-view class="tab-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+      <view
+        class="tab-item {{activeTab === index ? 'active' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="index"
+        bindtap="onTabChange"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+
+    <!-- 历史列表 -->
+    <view class="history-list" wx:if="{{filteredList.length > 0}}">
+      <view class="history-card" wx:for="{{filteredList}}" wx:key="id">
+        <view style="position: relative;">
+          <image class="history-card-image" src="{{item.image}}" mode="aspectFill"></image>
+          <view class="history-card-tag" style="background-color: {{item.categoryColor}};">{{item.category}}</view>
+        </view>
+        <view class="history-card-content">
+          <text class="history-card-title">{{item.title}}</text>
+          <view class="history-card-date">
+            <text class="iconfont icon-calendar" style="color: #FF7A2F;"></text>
+            <text>{{item.date}}</text>
+          </view>
+          <text class="history-card-desc">{{item.description}}</text>
+          <view class="history-card-manager">
+            <text class="manager-icon">👤</text>
+            <text class="manager-text">{{item.manager || '李老师'}} · {{item.managerPhone || '13812345678'}}</text>
+          </view>
+          <!-- 媒体列表 -->
+          <scroll-view class="media-list" scroll-x="true" scroll-y="false" enhanced="true" show-scrollbar="false" enable-flex="true">
+            <view class="media-item" wx:for="{{item.media}}" wx:for-item="media" wx:key="index">
+              <image src="{{media.url}}" mode="aspectFill" bindtap="onPreviewImage" data-url="{{media.url}}"></image>
+              <view class="media-item-video" wx:if="{{media.type === 'video'}}" bindtap="onPlayVideo">
+                <text class="iconfont icon-play"></text>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <text class="empty-icon iconfont icon-empty"></text>
+      <text class="empty-text">暂无赛事回顾</text>
+    </view>
+  </view>
+</view>
