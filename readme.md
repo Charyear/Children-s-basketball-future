@@ -1,4 +1,4 @@
-** Children 's basketball future ** is a children 's basketball tournament management platform based on WeChat applet. It connects kindergarten teachers and parents, and provides one-stop services such as event release, online registration, audit management, and event review.
+**Children 's basketball future** is a children 's basketball tournament management platform based on WeChat applet. It connects kindergarten teachers and parents, and provides one-stop services such as event release, online registration, audit management, and event review.
 
 ## 技术架构
 
