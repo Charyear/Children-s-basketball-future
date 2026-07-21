@@ -1,0 +1,97 @@
+<!--pages/teacher/audit/audit.wxml-->
+<view class="audit-container">
+  <!-- 主内容区域 -->
+  <view class="main-content">
+    <!-- 顶部导航区域 -->
+    <view class="top-navigation">
+      <!-- 返回大厅按钮 -->
+      <view class="back-home-btn" bindtap="backToHome">
+        <text class="back-icon">🏠</text>
+      </view>
+
+      <!-- 状态筛选标签 -->
+      <scroll-view class="tab-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+        <view
+          class="tab-item {{activeTab === index ? 'active' : ''}}"
+          wx:for="{{tabs}}"
+          wx:key="index"
+          bindtap="onTabChange"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 审核列表 -->
+    <view class="audit-list" wx:if="{{filteredList.length > 0}}">
+      <view class="audit-card" wx:for="{{filteredList}}" wx:key="id">
+        <view class="audit-card-header">
+          <view class="audit-avatar">
+            <image src="{{item.avatar}}" mode="aspectFill"></image>
+          </view>
+          <view class="audit-info">
+            <view class="audit-info-header">
+              <text class="audit-name">{{item.childName}}</text>
+              <text class="audit-status" style="background-color: {{item.statusColor}}15; color: {{item.statusColor}};">{{item.statusText}}</text>
+            </view>
+            <text class="audit-meta">{{item.childAge}} · {{item.childClass}} · {{item.childGender}}</text>
+          </view>
+        </view>
+        <view class="audit-card-content">
+          <view class="audit-detail-item">
+            <text class="iconfont icon-trophy" style="color: #FF7A2F;"></text>
+            <text>{{item.eventName}}</text>
+          </view>
+          <view class="audit-detail-item">
+            <text class="iconfont icon-user" style="color: #3B82F6;"></text>
+            <text>家长：{{item.parentName}} {{item.parentPhone}}</text>
+          </view>
+          <view class="audit-detail-item">
+            <text class="iconfont icon-clock"></text>
+            <text>{{item.submitTime}} 提交申请</text>
+          </view>
+        </view>
+        <view class="audit-card-footer" wx:if="{{item.status === 'pending'}}">
+          <view class="audit-card-btn reject" bindtap="onReject" data-id="{{item.id}}">驳回</view>
+          <view class="audit-card-btn pass" bindtap="onPass" data-id="{{item.id}}">通过</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <text class="empty-icon iconfont icon-empty"></text>
+      <text class="empty-text">暂无审核记录</text>
+    </view>
+  </view>
+
+  <!-- 驳回理由弹窗 -->
+  <view class="reject-modal-mask {{showRejectModal ? 'show' : ''}}" bindtap="onCloseRejectModal" catchtouchmove="preventTouchMove">
+    <view class="reject-modal-content" catchtap="stopPropagation">
+      <view class="reject-modal-header">
+        <text class="reject-modal-title">驳回理由</text>
+        <view class="reject-modal-close" bindtap="onCloseRejectModal">
+          <text>✕</text>
+        </view>
+      </view>
+
+      <view class="reject-modal-body">
+        <textarea
+          class="reject-textarea"
+          placeholder="请输入驳回理由，将通知家长..."
+          value="{{rejectReason}}"
+          bindinput="onRejectReasonInput"
+          maxlength="200"
+          auto-focus="{{showRejectModal}}"
+        />
+        <view class="reject-count">{{rejectReason.length}}/200</view>
+      </view>
+
+      <view class="reject-modal-footer">
+        <button class="reject-modal-btn cancel" bindtap="onCloseRejectModal">取消</button>
+        <button class="reject-modal-btn confirm" bindtap="onConfirmReject">确定</button>
+      </view>
+    </view>
+  </view>
+</view>

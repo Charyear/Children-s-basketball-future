@@ -1,0 +1,341 @@
+/* pages/teacher/audit/audit.wxss */
+page {
+  background: linear-gradient(to bottom, #EFF6FF 0%, #FFF7ED 100%);
+}
+
+.audit-container {
+  width: 100%;
+  min-height: 100vh;
+  padding-bottom: calc(100rpx + env(safe-area-inset-bottom));
+}
+
+/* 主内容区域 */
+.main-content {
+  padding: calc(60rpx + env(safe-area-inset-top)) 30rpx 20rpx;
+}
+
+/* 顶部导航区域 */
+.top-navigation {
+  display: flex;
+  align-items: center;
+  gap: 20rpx;
+  margin-bottom: 30rpx;
+}
+
+/* 返回大厅按钮 */
+.back-home-btn {
+  width: 80rpx;
+  height: 80rpx;
+  background: linear-gradient(135deg, #3B82F6 0%, #FF7A2F 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 20rpx rgba(59, 130, 246, 0.3);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.back-home-btn:active {
+  transform: scale(0.9);
+}
+
+.back-icon {
+  font-size: 40rpx;
+}
+
+/* 状态筛选标签 */
+.tab-bar {
+  flex: 1;
+  display: flex;
+  gap: 20rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.tab-item {
+  display: inline-block;
+  padding: 16rpx 32rpx;
+  border-radius: 40rpx;
+  font-size: 28rpx;
+  font-weight: 500;
+  background-color: #FFFFFF;
+  color: #999999;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.tab-item.active {
+  background-color: #FF7A2F;
+  color: #FFFFFF;
+  box-shadow: 0 2rpx 8rpx rgba(255, 122, 47, 0.3);
+}
+
+/* 审核列表 */
+.audit-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+  padding-bottom: 40rpx;
+}
+
+.audit-card {
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  padding: 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.04);
+  border: 1rpx solid #F5F5F5;
+}
+
+.audit-card-header {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+
+.audit-avatar {
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.audit-avatar image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.audit-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8rpx;
+}
+
+.audit-info-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.audit-name {
+  font-size: 30rpx;
+  font-weight: 600;
+  color: #333333;
+}
+
+.audit-status {
+  padding: 4rpx 16rpx;
+  border-radius: 20rpx;
+  font-size: 22rpx;
+  font-weight: 500;
+}
+
+.audit-meta {
+  font-size: 24rpx;
+  color: #999999;
+}
+
+.audit-card-content {
+  padding-top: 24rpx;
+  margin-top: 24rpx;
+  border-top: 1rpx solid #F5F5F5;
+  display: flex;
+  flex-direction: column;
+  gap: 16rpx;
+}
+
+.audit-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  font-size: 26rpx;
+  color: #666666;
+}
+
+.audit-detail-item text {
+  font-size: 24rpx;
+}
+
+.audit-card-footer {
+  display: flex;
+  gap: 20rpx;
+  padding-top: 24rpx;
+}
+
+.audit-card-btn {
+  flex: 1;
+  height: 64rpx;
+  border-radius: 12rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28rpx;
+  font-weight: 600;
+  padding: 0;
+  line-height: 1;
+}
+
+.audit-card-btn.reject {
+  background-color: #FEF2F2;
+  color: #EF4444;
+  border: 1rpx solid #FECACA;
+}
+
+.audit-card-btn.pass {
+  background-color: #FF7A2F;
+  color: #FFFFFF;
+}
+
+/* 空状态 */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 0;
+}
+
+.empty-icon {
+  font-size: 120rpx;
+  color: #E5E7EB;
+  margin-bottom: 20rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: #999999;
+}
+
+/* 驳回理由弹窗 */
+.modal-mask {
+  z-index: 10002 !important;
+}
+
+.reject-modal-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 0.3s ease;
+}
+
+.reject-modal-mask.show {
+  display: flex;
+}
+
+.reject-modal-content {
+  width: 80%;
+  max-width: 600rpx;
+  background-color: #FFFFFF;
+  border-radius: 24rpx;
+  overflow: hidden;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.reject-modal-mask.show .reject-modal-content {
+  transform: scale(1);
+}
+
+.reject-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 32rpx 30rpx;
+  border-bottom: 1rpx solid #F5F5F5;
+}
+
+.reject-modal-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333333;
+}
+
+.reject-modal-close {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  color: #999999;
+}
+
+.reject-modal-body {
+  padding: 30rpx;
+}
+
+.reject-textarea {
+  width: 100%;
+  min-height: 240rpx;
+  padding: 24rpx;
+  background: #F8F9FA;
+  border-radius: 12rpx;
+  font-size: 28rpx;
+  color: #333333;
+  line-height: 1.6;
+  border: 2rpx solid transparent;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+}
+
+.reject-textarea:focus {
+  background: #FFFFFF;
+  border-color: #FF7A2F;
+}
+
+.reject-count {
+  text-align: right;
+  font-size: 24rpx;
+  color: #999999;
+  margin-top: 12rpx;
+}
+
+.reject-modal-footer {
+  display: flex;
+  gap: 20rpx;
+  padding: 0 30rpx 30rpx;
+}
+
+.reject-modal-btn {
+  flex: 1;
+  height: 88rpx;
+  font-size: 32rpx;
+  font-weight: 500;
+  border-radius: 16rpx;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  line-height: 1;
+}
+
+.reject-modal-btn::after {
+  border: none;
+}
+
+.reject-modal-btn.cancel {
+  background: #F5F5F5;
+  color: #666666;
+}
+
+.reject-modal-btn.confirm {
+  background: linear-gradient(135deg, #FF7A2F 0%, #FF9D5C 100%);
+  color: #FFFFFF;
+  box-shadow: 0 8rpx 16rpx rgba(255, 122, 47, 0.3);
+}
+
