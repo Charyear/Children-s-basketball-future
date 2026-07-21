@@ -1,0 +1,226 @@
+<!--pages/teacher/student/student.wxml-->
+<view class="student-container">
+  <!-- 主内容区域 -->
+  <view class="main-content">
+    <!-- 顶部导航区域 -->
+    <view class="top-navigation">
+      <!-- 返回大厅按钮 -->
+      <view class="back-home-btn" bindtap="backToHome">
+        <text class="back-icon">🏠</text>
+      </view>
+
+      <!-- 筛选标签 -->
+      <scroll-view class="tab-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+        <view
+          class="tab-item {{activeTab === index ? 'active' : ''}}"
+          wx:for="{{tabs}}"
+          wx:key="index"
+          bindtap="onTabChange"
+          data-index="{{index}}"
+        >
+          {{item}}
+        </view>
+      </scroll-view>
+    </view>
+
+    <!-- 搜索栏 -->
+    <view class="search-section">
+      <view class="search-wrapper">
+        <text class="search-icon">🔍</text>
+        <input
+          class="search-input"
+          placeholder="搜索学员姓名"
+          placeholder-class="search-placeholder"
+          value="{{searchKeyword}}"
+          bindinput="onSearchInput"
+          confirm-type="search"
+        />
+      </view>
+      <view class="add-student-icon" bindtap="onAddStudent">
+        <text>+</text>
+      </view>
+    </view>
+
+    <!-- 学员列表 -->
+    <view class="student-list" wx:if="{{filteredList.length > 0}}">
+      <view class="student-card" wx:for="{{filteredList}}" wx:key="id" catchtap="onViewStudent" data-id="{{item.id}}">
+        <view class="student-card-content">
+          <view class="student-avatar">
+            <image src="{{item.avatar}}" mode="aspectFill"></image>
+          </view>
+          <view class="student-info">
+            <view class="student-name-row">
+              <text class="student-name">{{item.name}}</text>
+              <text class="student-class" style="background-color: {{item.classColor}}15; color: {{item.classColor}};">{{item.class}}</text>
+            </view>
+            <text class="student-meta">学号: {{item.studentId}}</text>
+            <text class="student-meta">已参与赛事: {{item.events}}次</text>
+          </view>
+          <view class="student-actions">
+            <view class="student-action-btn record" catchtap="onViewRecord" data-id="{{item.id}}">
+              <text class="iconfont icon-history"></text>
+            </view>
+            <view class="student-action-btn edit" catchtap="onEditStudent" data-id="{{item.id}}">
+              <text class="iconfont icon-edit"></text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <text class="empty-icon iconfont icon-empty"></text>
+      <text class="empty-text">暂无学员</text>
+    </view>
+  </view>
+
+  <!-- 学员详情弹窗 -->
+  <view class="detail-modal-mask {{showStudentDetail ? 'show' : ''}}" bindtap="onCloseStudentDetail" catchtouchmove="preventTouchMove">
+    <scroll-view class="detail-modal-content" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}" catchtap>
+      <!-- 头部 -->
+      <view class="detail-header">
+        <view class="detail-avatar">
+          <image src="{{selectedStudent.avatar}}" mode="aspectFill"></image>
+        </view>
+        <view class="detail-header-info">
+          <text class="detail-name">{{selectedStudent.name}}</text>
+          <text class="detail-id">学号: {{selectedStudent.studentId}}</text>
+        </view>
+        <view class="detail-close" bindtap="onCloseStudentDetail">
+          <text class="iconfont icon-close"></text>
+        </view>
+      </view>
+
+      <!-- 基本信息 -->
+      <view class="detail-section">
+        <view class="detail-section-title">基本信息</view>
+        <view class="detail-item">
+          <text class="detail-label">姓名</text>
+          <text class="detail-value">{{selectedStudent.name}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">性别</text>
+          <text class="detail-value">{{selectedStudent.gender}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">年龄</text>
+          <text class="detail-value">{{selectedStudent.age}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">联系方式</text>
+          <text class="detail-value">{{selectedStudent.phone}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">年级</text>
+          <text class="detail-value">{{selectedStudent.grade}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">幼儿园</text>
+          <text class="detail-value">{{selectedStudent.kindergarten}}</text>
+        </view>
+      </view>
+
+      <!-- 家长信息 -->
+      <view class="detail-section">
+        <view class="detail-section-title">家长信息</view>
+        <view class="detail-item">
+          <text class="detail-label">家长联系人</text>
+          <text class="detail-value">{{selectedStudent.parentName}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">与联系人关系</text>
+          <text class="detail-value">{{selectedStudent.relationship}}</text>
+        </view>
+        <view class="detail-item">
+          <text class="detail-label">联系方式</text>
+          <text class="detail-value">{{selectedStudent.parentPhone}}</text>
+        </view>
+      </view>
+
+      <!-- 指导教师 -->
+      <view class="detail-section">
+        <view class="detail-section-title">指导教师</view>
+        <view class="detail-item">
+          <text class="detail-label">指导教师</text>
+          <text class="detail-value teacher-name">{{selectedStudent.teacherName}}</text>
+        </view>
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 添加学员弹窗 -->
+  <view class="add-modal-mask {{showAddStudentModal ? 'show' : ''}}" bindtap="onCloseAddStudentModal" catchtouchmove="preventTouchMove">
+    <view class="add-modal-content" catchtap>
+      <view class="add-modal-header">
+        <text class="add-modal-title">添加学员</text>
+        <view class="add-modal-close" bindtap="onCloseAddStudentModal">
+          <text class="iconfont icon-close">✕</text>
+        </view>
+      </view>
+
+      <scroll-view class="add-modal-body" scroll-y="{{true}}" enhanced="{{true}}" show-scrollbar="{{false}}">
+        <view class="form-group">
+          <text class="form-label">学员姓名 *</text>
+          <input class="form-input" placeholder="请输入学员姓名" value="{{newStudent.name}}" bindinput="onStudentInputChange" data-field="name" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">性别 *</text>
+          <picker mode="selector" range="{{['男', '女']}}" value="{{newStudent.gender === '男' ? 0 : 1}}" bindchange="onGenderChange">
+            <view class="form-input picker">{{newStudent.gender}}</view>
+          </picker>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">年龄 *</text>
+          <input class="form-input" placeholder="如: 5岁" value="{{newStudent.age}}" bindinput="onStudentInputChange" data-field="age" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">联系电话 *</text>
+          <input class="form-input" type="number" placeholder="请输入联系电话" value="{{newStudent.phone}}" bindinput="onStudentInputChange" data-field="phone" maxlength="11" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">年级 *</text>
+          <picker mode="selector" range="{{['小班', '中班', '大班']}}" value="{{newStudent.grade === '小班' ? 0 : newStudent.grade === '中班' ? 1 : 2}}" bindchange="onGradeChange">
+            <view class="form-input picker">{{newStudent.grade}}</view>
+          </picker>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">幼儿园</text>
+          <input class="form-input" placeholder="请输入幼儿园名称" value="{{newStudent.kindergarten}}" bindinput="onStudentInputChange" data-field="kindergarten" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">家长姓名 *</text>
+          <input class="form-input" placeholder="请输入家长姓名" value="{{newStudent.parentName}}" bindinput="onStudentInputChange" data-field="parentName" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">与学员关系 *</text>
+          <picker mode="selector" range="{{['父亲', '母亲', '爷爷', '奶奶', '其他']}}" value="{{newStudent.relationship === '父亲' ? 0 : newStudent.relationship === '母亲' ? 1 : 2}}" bindchange="onRelationshipChange">
+            <view class="form-input picker">{{newStudent.relationship}}</view>
+          </picker>
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">家长电话 *</text>
+          <input class="form-input" type="number" placeholder="请输入家长电话" value="{{newStudent.parentPhone}}" bindinput="onStudentInputChange" data-field="parentPhone" maxlength="11" />
+        </view>
+
+        <view class="form-group">
+          <text class="form-label">指导教师</text>
+          <view class="form-input disabled">{{currentTeacher.name}}</view>
+        </view>
+      </scroll-view>
+
+      <view class="add-modal-footer">
+        <button class="add-modal-btn cancel" bindtap="onCloseAddStudentModal">取消</button>
+        <button class="add-modal-btn confirm" bindtap="onSubmitAddStudent">确认添加</button>
+      </view>
+    </view>
+  </view>
+</view>
