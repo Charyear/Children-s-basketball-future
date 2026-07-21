@@ -1,0 +1,101 @@
+<!--pages/teacher/profile/profile.wxml-->
+<view class="profile-container">
+  <!-- 返回大厅按钮 -->
+  <view class="back-home-btn" bindtap="backToHome">
+    <text class="back-icon">🏠</text>
+  </view>
+
+  <!-- 头部信息 -->
+  <view class="profile-header">
+    <view class="profile-header-bg"></view>
+    <view class="profile-info">
+      <view class="profile-avatar">
+        <image src="{{userInfo.avatar}}" mode="aspectFill"></image>
+      </view>
+      <view class="profile-details">
+        <text class="profile-name">{{userInfo.name}}</text>
+        <text class="profile-role">{{userInfo.role}}</text>
+      </view>
+      <view class="profile-edit-btn" bindtap="onEditProfile">
+        <text class="iconfont icon-edit">✎</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 数据统计概览 -->
+  <view class="stats-overview">
+    <view class="stat-card">
+      <text class="stat-value">{{statistics.totalStudents}}</text>
+      <text class="stat-label">总学员数</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{statistics.activeStudents}}</text>
+      <text class="stat-label">活跃学员</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{statistics.totalEvents}}</text>
+      <text class="stat-label">累计赛事</text>
+    </view>
+    <view class="stat-card">
+      <text class="stat-value">{{statistics.thisMonthEvents}}</text>
+      <text class="stat-label">本月赛事</text>
+    </view>
+  </view>
+
+  <!-- 年级分布 -->
+  <view class="chart-section">
+    <text class="section-title">年级分布</text>
+    <view class="grade-chart">
+      <view class="grade-bar-container">
+        <view class="grade-bar" wx:for="{{statistics.gradeDistribution}}" wx:key="name">
+          <view class="grade-bar-fill" style="width: {{item.percentage}}%; background-color: {{item.color}};"></view>
+        </view>
+      </view>
+      <view class="grade-legend">
+        <view class="legend-item" wx:for="{{statistics.gradeDistribution}}" wx:key="name">
+          <view class="legend-dot" style="background-color: {{item.color}};"></view>
+          <text class="legend-text">{{item.name}}</text>
+          <text class="legend-value">{{item.value}}人 ({{item.percentage}}%)</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 近期活动趋势 -->
+  <view class="chart-section">
+    <text class="section-title">近期活动趋势</text>
+    <view class="activity-chart">
+      <view class="chart-bars">
+        <view class="chart-bar" wx:for="{{statistics.recentActivities}}" wx:key="date">
+          <view class="bar-wrapper">
+            <view class="bar-fill events" style="height: {{item.events * 20}}%;"></view>
+            <view class="bar-fill students" style="height: {{item.students * 2}}%;"></view>
+          </view>
+          <text class="bar-label">{{item.date}}</text>
+        </view>
+      </view>
+      <view class="chart-legend">
+        <view class="legend-item">
+          <view class="legend-dot" style="background-color: #FF7A2F;"></view>
+          <text class="legend-text">赛事数</text>
+        </view>
+        <view class="legend-item">
+          <view class="legend-dot" style="background-color: #3B82F6;"></view>
+          <text class="legend-text">参与学员</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 基本信息 -->
+  <view class="info-section">
+    <view class="info-item">
+      <text class="info-label">所属幼儿园</text>
+      <text class="info-value">{{userInfo.kindergarten}}</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">联系方式</text>
+      <text class="info-value">{{userInfo.phone}}</text>
+    </view>
+  </view>
+</view>
