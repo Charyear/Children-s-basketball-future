@@ -1,0 +1,67 @@
+<!--pages/teacher/event/event.wxml-->
+<view class="event-container">
+  <!-- 返回大厅按钮 -->
+  <view class="back-home-btn" bindtap="backToHome">
+    <text class="back-icon">🏠</text>
+  </view>
+
+  <!-- 主内容区域 -->
+  <view class="main-content">
+    <!-- 新建赛事按钮 -->
+    <button class="add-event-btn" bindtap="onAddEvent">
+      <text class="iconfont icon-plus" style="font-size: 36rpx;"></text>
+      <text>新建赛事</text>
+    </button>
+
+    <!-- 状态筛选标签 -->
+    <scroll-view class="tab-bar" scroll-x="true" enhanced="true" show-scrollbar="false">
+      <view
+        class="tab-item {{activeTab === index ? 'active' : ''}}"
+        wx:for="{{tabs}}"
+        wx:key="index"
+        bindtap="onTabChange"
+        data-index="{{index}}"
+      >
+        {{item}}
+      </view>
+    </scroll-view>
+
+    <!-- 赛事列表 -->
+    <view class="event-list" wx:if="{{filteredList.length > 0}}">
+      <view class="event-card" wx:for="{{filteredList}}" wx:key="id">
+        <view class="event-card-header">
+          <view class="event-card-title-row">
+            <text class="event-card-title">{{item.title}}</text>
+            <text class="event-card-status" style="background-color: {{item.statusColor}}15; color: {{item.statusColor}};">{{item.statusText}}</text>
+          </view>
+          <view class="event-card-meta">
+            <view class="event-card-meta-item">
+              <text class="iconfont icon-calendar"></text>
+              <text>{{item.date}}</text>
+            </view>
+            <view class="event-card-meta-item">
+              <text class="iconfont icon-location"></text>
+              <text>{{item.location}}</text>
+            </view>
+            <view class="event-card-meta-item">
+              <text class="iconfont icon-user-group"></text>
+              <text>已报名 {{item.enrolled}} 人</text>
+            </view>
+          </view>
+        </view>
+        <view class="event-card-footer">
+          <view class="event-card-btn primary" bindtap="onEditEvent" data-id="{{item.id}}" wx:if="{{item.status === 'draft'}}">编辑</view>
+          <view class="event-card-btn secondary" bindtap="onPublishEvent" data-id="{{item.id}}" wx:if="{{item.status === 'draft'}}">发布赛事</view>
+          <view class="event-card-btn primary" bindtap="onViewEvent" data-id="{{item.id}}" wx:if="{{item.status !== 'draft'}}">查看赛事</view>
+          <view class="event-card-btn warning" bindtap="onPauseEvent" data-id="{{item.id}}" wx:if="{{item.status === 'published' || item.status === 'ongoing'}}">暂停通知</view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 空状态 -->
+    <view class="empty-state" wx:else>
+      <text class="empty-icon iconfont icon-empty"></text>
+      <text class="empty-text">暂无赛事</text>
+    </view>
+  </view>
+</view>
